@@ -11,20 +11,24 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
           </div>
           <div>
-            <p>
+            <h2>
               Your address book...
+            </h2>
+            <p>
+              Read, Add, Delete, or Modify your Address Book
             </p>
-            <a
-              className="App-link"
-              href=""
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Add New Contact
-            </a>
           </div>
         </header>
+        <a
+          className="App-link"
+          href=""
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+        Add New Contact
+        </a>
       </div>
+      
     );
   }
 }
