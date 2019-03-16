@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.jpg';
 import './App.css';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button'
 
 class App extends Component {
   state = {
@@ -43,15 +45,36 @@ class App extends Component {
       }
     ],
 
-    name: '',
+    fName: '',
+    lName:'',
     dob: '',
     contact: ''
   }
   
-  displayAddressBook = (props) =>{
-      return props.Book.map( (item) =>
-        <div>{item.FirstName}</div>
-      );
+  addAddress = (event) => {
+    event.preventDefault();
+    let newPerson = {
+      FirstName: this.state.fName,
+      LastName: this.state.lName,
+      Birthday: this.state.dob,
+      Telephone: this.state.contact
+    }
+
+    this.setState({addressBook: [...this.state.addressBook, newPerson]});
+    this.setState({fName: ''});
+    this.setState({lName: '' });
+    this.setState({dob: ''});
+    this.setState({contact: ''});
+  }
+
+  viewAddress = (props) =>{
+    // let view = props.book.map(person =>
+    //   <div className="person">
+    //     <div>{person.FirstName}, {person.LastName}</div>
+    //     <div>{person.Birthday}</div>
+    //     <div>{person.Telephone}</div>
+    //   </div>);
+    // return view;
   }
 
   render() {
@@ -71,14 +94,41 @@ class App extends Component {
             
           </div>
         </header>
+        
         <button className="addContact">Add New Contact</button>
-        {/* <displayAddressBook Book = {this.state.addressBook}/> */}
-        <div className="view">{this.state.addressBook.map(person =>
-          <div className="person">
-            <div>{person.FirstName}, {person.LastName}</div>
-            <div>{person.Birthday}</div>
-            <div>{person.Telephone}</div>
-          </div>
+        <Form className="text-left" onSubmit={this.addAddress}>
+            <Form.Group controlId="formAddress">
+              <Form.Label>FirstName</Form.Label>
+              <Form.Control 
+                type="text" 
+                placeholder="Enter First Name" 
+                value={this.state.fName}
+                onChange={(event) => this.setState({fName: event.target.value})}/>
+              <Form.Label>LastName</Form.Label>
+              <Form.Control 
+                type="text" 
+                placeholder="Enter Last Name" 
+                value={this.state.lName}
+                onChange={(event) => this.setState({lName: event.target.value})}/>
+                
+              <Form.Label>Birthday</Form.Label>
+              <Form.Control 
+                type="date" 
+                placeholder="Enter Date of Birth" 
+                value={this.state.dob}
+                onChange={(event) => this.setState({dob: event.target.value})}/>
+            </Form.Group>
+          
+            <Button variant="primary" type="submit">Add</Button>
+          </Form>
+        {/* <viewAddress book={this.state.addressBook}/> */}
+        <div className="view">
+          {this.state.addressBook.map(person =>
+              <div className="person">
+                <div>{person.FirstName}, {person.LastName}</div>
+                <div>{person.Birthday}</div>
+                <div>{person.Telephone}</div>
+              </div>
           )}
         </div>
       </div>
