@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: gray;
 }
 
 .App-logo {
@@ -37,20 +38,16 @@
   }
 }
 
-.addContact{
-  color: white;
-  background-color: green;
-  width: 200px;
-  font-size: 18px;
-  border-radius: 15px;
-  margin-top: 10px;
-  align-items: center;
+.Body {
+  display: flex;
+  justify-content: center;
 }
-
 .view {
   display: grid;
   grid-template-rows: auto;
   justify-content: center;
+  border: 10px solid white;
+  margin: 10px;
 }
 
 .person {
@@ -58,4 +55,15 @@
   border: 5px solid green;
   border-radius: 5px;
   min-width: 300px;
+}
+
+Form.Control {
+  display: grid;
+  grid-template-rows: auto;
+}
+
+Form {
+  margin: 10px;
+  border: 10px solid white;
+  width: 300px;
 }

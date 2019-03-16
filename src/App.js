@@ -4,6 +4,7 @@ import './App.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 
+import ReactPhoneInput from 'react-phone-input-2';
 class App extends Component {
   state = {
     addressBook: [
@@ -94,10 +95,11 @@ class App extends Component {
             
           </div>
         </header>
-        
-        <button className="addContact">Add New Contact</button>
+        <div className='Body'>        
         <Form className="text-left" onSubmit={this.addAddress}>
             <Form.Group controlId="formAddress">
+
+            <div className="inputBlock">
               <Form.Label>FirstName</Form.Label>
               <Form.Control 
                 type="text" 
@@ -105,6 +107,9 @@ class App extends Component {
                 required
                 value={this.state.fName}
                 onChange={(event) => this.setState({fName: event.target.value})}/>
+            </div>
+              
+            <div className="inputBlock">
               <Form.Label>LastName</Form.Label>
               <Form.Control 
                 type="text" 
@@ -112,27 +117,36 @@ class App extends Component {
                 required
                 value={this.state.lName}
                 onChange={(event) => this.setState({lName: event.target.value})}/>
-                
+            </div>
+
+            <div className="inputBlock">
               <Form.Label>Birthday</Form.Label>
               <Form.Control 
                 type="date" 
                 placeholder="Enter Date of Birth"
-                required
                 value={this.state.dob}
                 onChange={(event) => this.setState({dob: event.target.value})}/>
-                
+            </div>
+
+            <div className="inputBlock">
               <Form.Label>Telephone</Form.Label>
-              <Form.Control 
-                type="tel" 
-                placeholder="Enter Telephone number" 
+              <ReactPhoneInput
+                defaultCountry={'us'}
                 value={this.state.contact}
-                onChange={(event) => this.setState({contact: event.target.value})}/>
+                onChange={(value) => this.setState({contact: value})}/>
+            </div>
+              
             </Form.Group>
           
-            <Button variant="primary" type="submit">Add</Button>
+            <Button variant="primary" type="submit">Add Contact</Button>
           </Form>
         {/* <viewAddress book={this.state.addressBook}/> */}
         <div className="view">
+          <div className = "search">
+              <Form.Control
+              type = "text"
+              placeholder = "Enter Name to search"/>
+            </div>
           {this.state.addressBook.map(person =>
               <div className="person">
                 <div>{person.FirstName}, {person.LastName}</div>
@@ -140,6 +154,7 @@ class App extends Component {
                 <div>{person.Telephone}</div>
               </div>
           )}
+        </div>
         </div>
       </div>
     );
