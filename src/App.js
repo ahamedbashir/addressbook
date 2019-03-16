@@ -101,22 +101,32 @@ class App extends Component {
               <Form.Label>FirstName</Form.Label>
               <Form.Control 
                 type="text" 
-                placeholder="Enter First Name" 
+                placeholder="Enter First Name"
+                required
                 value={this.state.fName}
                 onChange={(event) => this.setState({fName: event.target.value})}/>
               <Form.Label>LastName</Form.Label>
               <Form.Control 
                 type="text" 
-                placeholder="Enter Last Name" 
+                placeholder="Enter Last Name"
+                required
                 value={this.state.lName}
                 onChange={(event) => this.setState({lName: event.target.value})}/>
                 
               <Form.Label>Birthday</Form.Label>
               <Form.Control 
                 type="date" 
-                placeholder="Enter Date of Birth" 
+                placeholder="Enter Date of Birth"
+                required
                 value={this.state.dob}
                 onChange={(event) => this.setState({dob: event.target.value})}/>
+                
+              <Form.Label>Telephone</Form.Label>
+              <Form.Control 
+                type="tel" 
+                placeholder="Enter Telephone number" 
+                value={this.state.contact}
+                onChange={(event) => this.setState({contact: event.target.value})}/>
             </Form.Group>
           
             <Button variant="primary" type="submit">Add</Button>
