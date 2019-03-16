@@ -47,7 +47,14 @@
   align-items: center;
 }
 
+.view {
+  display: grid;
+  grid-template-rows: auto;
+  justify-content: center;
+}
+
 .person {
   margin: 10px 10px 10px 10px;
   border: 10px solid green;
+  min-width: 300px;
 }
