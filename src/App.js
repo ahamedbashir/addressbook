@@ -68,6 +68,12 @@ class App extends Component {
     this.setState({contact: ''});
   }
 
+  deleteAddress = (key, event) =>{
+    let book = [...this.state.addressBook];
+    let index = book.findIndex((person)=>person.key == key);
+    book.splice(index, 1);
+    this.setState({addressBook: book});
+  }
   viewAddress = (props) =>{
     // let view = props.book.map(person =>
     //   <div className="person">
@@ -100,7 +106,7 @@ class App extends Component {
             <Form.Group controlId="formAddress">
 
             <div className="inputBlock">
-              <Form.Label>FirstName</Form.Label>
+              <Form.Label>FirstName </Form.Label>
               <Form.Control 
                 type="text" 
                 placeholder="Enter First Name"
@@ -110,7 +116,7 @@ class App extends Component {
             </div>
               
             <div className="inputBlock">
-              <Form.Label>LastName</Form.Label>
+              <Form.Label>LastName </Form.Label>
               <Form.Control 
                 type="text" 
                 placeholder="Enter Last Name"
@@ -120,7 +126,7 @@ class App extends Component {
             </div>
 
             <div className="inputBlock">
-              <Form.Label>Birthday</Form.Label>
+              <Form.Label>Birthday </Form.Label>
               <Form.Control 
                 type="date" 
                 placeholder="Enter Date of Birth"
@@ -148,7 +154,7 @@ class App extends Component {
               placeholder = "Enter Name to search"/>
             </div>
           {this.state.addressBook.map(person =>
-              <div className="person">
+              <div className="person" key={person.Telephone}>
                 <div>{person.FirstName}, {person.LastName}</div>
                 <div>{person.Birthday}</div>
                 <div>{person.Telephone}</div>

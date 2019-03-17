@@ -39,7 +39,7 @@
 }
 
 .Body {
-  display: flex;
+  display: grid;
   justify-content: center;
 }
 .view {
@@ -57,13 +57,15 @@
   min-width: 300px;
 }
 
-Form.Control {
-  display: grid;
-  grid-template-rows: auto;
+.inputBlock {
+  margin: 10px 10px 10px 0px;
+  text-align: center;
+  border: 5px solid black;
 }
 
 Form {
   margin: 10px;
   border: 10px solid white;
-  width: 300px;
+  width: 350px;
+  height: 250px;
 }
