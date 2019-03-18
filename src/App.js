@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.jpg';
 import './App.css';
+import ViewBook from './AddressBook/AddressBook';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 
@@ -49,7 +50,9 @@ class App extends Component {
     fName: '',
     lName:'',
     dob: '',
-    contact: ''
+    contact: '',
+    add: false,
+    view: false
   }
   
   addAddress = (event) => {
@@ -70,18 +73,9 @@ class App extends Component {
 
   deleteAddress = (key, event) =>{
     let book = [...this.state.addressBook];
-    let index = book.findIndex((person)=>person.key == key);
+    let index = book.findIndex((person)=>person.key === key);
     book.splice(index, 1);
     this.setState({addressBook: book});
-  }
-  viewAddress = (props) =>{
-    // let view = props.book.map(person =>
-    //   <div className="person">
-    //     <div>{person.FirstName}, {person.LastName}</div>
-    //     <div>{person.Birthday}</div>
-    //     <div>{person.Telephone}</div>
-    //   </div>);
-    // return view;
   }
 
   render() {
@@ -101,13 +95,15 @@ class App extends Component {
             
           </div>
         </header>
-        <div className='Body'>        
+        <div className='Body'>
+        <button type="primary">Create New Contact</button> 
+        <button type="primary">View Address Book</button>      
         <Form className="text-left" onSubmit={this.addAddress}>
             <Form.Group controlId="formAddress">
 
             <div className="inputBlock">
               <Form.Label>FirstName </Form.Label>
-              <Form.Control 
+              <Form.Control
                 type="text" 
                 placeholder="Enter First Name"
                 required
@@ -138,6 +134,7 @@ class App extends Component {
               <Form.Label>Telephone</Form.Label>
               <ReactPhoneInput
                 defaultCountry={'us'}
+                required
                 value={this.state.contact}
                 onChange={(value) => this.setState({contact: value})}/>
             </div>
@@ -146,20 +143,21 @@ class App extends Component {
           
             <Button variant="primary" type="submit">Add Contact</Button>
           </Form>
-        {/* <viewAddress book={this.state.addressBook}/> */}
+        <viewAddress book={this.state.addressBook}/>
         <div className="view">
           <div className = "search">
               <Form.Control
               type = "text"
               placeholder = "Enter Name to search"/>
             </div>
-          {this.state.addressBook.map(person =>
+            <ViewBook book = {this.state.addressBook}/>
+          {/* {this.state.addressBook.map(person =>
               <div className="person" key={person.Telephone}>
                 <div>{person.FirstName}, {person.LastName}</div>
                 <div>{person.Birthday}</div>
                 <div>{person.Telephone}</div>
               </div>
-          )}
+          )} */}
         </div>
         </div>
       </div>
