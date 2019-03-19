@@ -13,7 +13,7 @@ class App extends Component {
         FirstName: "Cathy" ,
         LastName: "Pierce",
         Birthday: "9/14/1996",
-        Telephone: "200-910-8132"
+        Telephone: "200-910-8132",
       },
       {
         FirstName: "Alfonso",
@@ -71,9 +71,10 @@ class App extends Component {
     this.setState({contact: ''});
   }
 
-  deleteAddress = (key, event) =>{
+  deleteAddressHandler = (key, event) =>{
     let book = [...this.state.addressBook];
-    let index = book.findIndex((person)=>person.key === key);
+    let index = book.findIndex((person)=>person.FirstName+person.LastName === key);
+    console.log(index);
     book.splice(index, 1);
     this.setState({addressBook: book});
   }
@@ -143,14 +144,16 @@ class App extends Component {
           
             <Button variant="primary" type="submit">Add Contact</Button>
           </Form>
-        <viewAddress book={this.state.addressBook}/>
+        
         <div className="view">
           <div className = "search">
               <Form.Control
               type = "text"
               placeholder = "Enter Name to search"/>
             </div>
-            <ViewBook book = {this.state.addressBook}/>
+            <ViewBook 
+              book = {this.state.addressBook}
+              deletePerson = {this.deleteAddressHandler}/>
           {/* {this.state.addressBook.map(person =>
               <div className="person" key={person.Telephone}>
                 <div>{person.FirstName}, {person.LastName}</div>

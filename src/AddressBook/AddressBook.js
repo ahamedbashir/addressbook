@@ -7,6 +7,7 @@ const viewBook = (props)  => {
             <div>{person.FirstName}, {person.LastName}</div>
             <div>{person.Birthday}</div>
             <div>{person.Telephone}</div>
+            <button onClick={props.deletePerson}>Delete Contact</button>
         </div>);
     })
 
