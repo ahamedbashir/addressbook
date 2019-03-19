@@ -97,8 +97,9 @@ class App extends Component {
           </div>
         </header>
         <div className='Body'>
-        <button type="primary">Create New Contact</button> 
-        <button type="primary">View Address Book</button>      
+        
+        <button type="primary" onClick={()=>this.setState({add: true})}>Create New Contact</button>
+        {this.state.add &&
         <Form className="text-left" onSubmit={this.addAddress}>
             <Form.Group controlId="formAddress">
 
@@ -135,15 +136,14 @@ class App extends Component {
               <Form.Label>Telephone</Form.Label>
               <ReactPhoneInput
                 defaultCountry={'us'}
-                required
+                required="true"
                 value={this.state.contact}
                 onChange={(value) => this.setState({contact: value})}/>
             </div>
-              
             </Form.Group>
-          
             <Button variant="primary" type="submit">Add Contact</Button>
           </Form>
+        }
         
         <div className="view">
           <div className = "search">
@@ -151,9 +151,11 @@ class App extends Component {
               type = "text"
               placeholder = "Enter Name to search"/>
             </div>
+            <button type="primary" onClick={()=>this.setState({view: ! this.state.view})}>View Address Book</button>
+            {this.state.view &&
             <ViewBook 
               book = {this.state.addressBook}
-              deletePerson = {this.deleteAddressHandler}/>
+                deletePerson = {this.deleteAddressHandler}/>}
           {/* {this.state.addressBook.map(person =>
               <div className="person" key={person.Telephone}>
                 <div>{person.FirstName}, {person.LastName}</div>

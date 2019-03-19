@@ -10,7 +10,6 @@ const viewBook = (props)  => {
             <button onClick={props.deletePerson}>Delete Contact</button>
         </div>);
     })
-
     return book;
 }
 
