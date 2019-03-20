@@ -75,6 +75,7 @@ class App extends Component {
     let book = [...this.state.addressBook];
     let index = book.findIndex((person)=>person.FirstName+person.LastName === key);
     console.log(index);
+    console.log(key)
     book.splice(index, 1);
     this.setState({addressBook: book});
   }
