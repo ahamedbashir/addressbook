@@ -3,58 +3,67 @@ import logo from './logo.jpg';
 import './App.css';
 import ViewBook from './AddressBook/AddressBook';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button'
-
+import Button from 'react-bootstrap/Button';
+// import UniqueId from 'react-html-id';
 import ReactPhoneInput from 'react-phone-input-2';
 class App extends Component {
-  state = {
-    addressBook: [
-      {
-        FirstName: "Cathy" ,
-        LastName: "Pierce",
-        Birthday: "9/14/1996",
-        Telephone: "200-910-8132",
-      },
-      {
-        FirstName: "Alfonso",
-        LastName: "Cooley",
-        Birthday: "8/10/1973",
-        Telephone: "200-657-9362"
-      },
-      {
-        FirstName: "Victor",
-        LastName: "Gordon",
-        Birthday: "8/3/1970",
-        Telephone: "200-661-9407"
-      },
-      {
-        FirstName: "Colleen",
-        LastName: "Wright",
-        Birthday: "10/28/1967",
-        Telephone: "200-250-7949"
-      },
-      {
-        FirstName: "James",
-        LastName: "Johnston",
-        Birthday: "5/11/1972",
-        Telephone: "200-645-3176"
-      },
-      {
-        FirstName: "Anna",
-        LastName: "Reyes",
-        Birthday: "9/10/1975",
-        Telephone: "200-707-8670"
-      }
-    ],
+  constructor(){
+    super();
+    // UniqueId.enableUniqueIds(this);
+    this.state = {
+      addressBook: [
+        {
+          // id: this.nextUniqueId(),
+          FirstName: "Cathy" ,
+          LastName: "Pierce",
+          Birthday: "9/14/1996",
+          Telephone: "200-910-8132",
+        },
+        {
+          // id: this.nextUniqueId(),
+          FirstName: "Alfonso",
+          LastName: "Cooley",
+          Birthday: "8/10/1973",
+          Telephone: "200-657-9362"
+        },
+        {
+          // id: this.nextUniqueId(),
+          FirstName: "Victor",
+          LastName: "Gordon",
+          Birthday: "8/3/1970",
+          Telephone: "200-661-9407"
+        },
+        {
+          // id: this.nextUniqueId(),
+          FirstName: "Colleen",
+          LastName: "Wright",
+          Birthday: "10/28/1967",
+          Telephone: "200-250-7949"
+        },
+        {
+          // id: this.nextUniqueId(),
+          FirstName: "James",
+          LastName: "Johnston",
+          Birthday: "5/11/1972",
+          Telephone: "200-645-3176"
+        },
+        {
+          // id: this.nextUniqueId(),
+          FirstName: "Anna",
+          LastName: "Reyes",
+          Birthday: "9/10/1975",
+          Telephone: "200-707-8670"
+        }
+      ],
 
-    fName: '',
-    lName:'',
-    dob: '',
-    contact: '',
-    add: false,
-    view: false
+      fName: '',
+      lName:'',
+      dob: '',
+      contact: '',
+      add: false,
+      view: false
+    }
   }
-  
   addAddress = (event) => {
     event.preventDefault();
     let newPerson = {
@@ -71,13 +80,12 @@ class App extends Component {
     this.setState({contact: ''});
   }
 
-  deleteAddressHandler = (key, event) =>{
-    let book = [...this.state.addressBook];
-    let index = book.findIndex((person)=>person.FirstName+person.LastName === key);
-    console.log(index);
-    console.log(key)
-    book.splice(index, 1);
-    this.setState({addressBook: book});
+  deleteAddressHandler = (index, event) =>{
+    // let book = [...this.state.addressBook];
+    // let index = book.findIndex((person)=>person.id === key);
+    const addressbook = this.state.addressBook;
+    addressbook.splice(index, 1);
+    this.setState({addressBook:addressbook});
   }
 
   render() {
@@ -151,19 +159,13 @@ class App extends Component {
               <Form.Control
               type = "text"
               placeholder = "Enter Name to search"/>
-            </div>
-            <button type="primary" onClick={()=>this.setState({view: ! this.state.view})}>View Address Book</button>
-            {this.state.view &&
-            <ViewBook 
-              book = {this.state.addressBook}
-                deletePerson = {this.deleteAddressHandler}/>}
-          {/* {this.state.addressBook.map(person =>
-              <div className="person" key={person.Telephone}>
-                <div>{person.FirstName}, {person.LastName}</div>
-                <div>{person.Birthday}</div>
-                <div>{person.Telephone}</div>
-              </div>
-          )} */}
+          </div>
+          <button type="primary" onClick={()=>this.setState({view: ! this.state.view})}>View Address Book</button>
+          {this.state.view &&
+          <ViewBook 
+            book = {this.state.addressBook}
+            deletePerson = {this.deleteAddressHandler}/>
+          }
         </div>
         </div>
       </div>
