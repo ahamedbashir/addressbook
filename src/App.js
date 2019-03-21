@@ -81,9 +81,8 @@ class App extends Component {
   }
 
   deleteAddressHandler = (index, event) =>{
-    // let book = [...this.state.addressBook];
+    const addressbook = [...this.state.addressBook];
     // let index = book.findIndex((person)=>person.id === key);
-    const addressbook = this.state.addressBook;
     addressbook.splice(index, 1);
     this.setState({addressBook:addressbook});
   }
