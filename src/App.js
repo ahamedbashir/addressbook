@@ -4,51 +4,51 @@ import './App.css';
 import ViewBook from './AddressBook/AddressBook';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-// import UniqueId from 'react-html-id';
+import {generate} from 'randomstring';
 import ReactPhoneInput from 'react-phone-input-2';
+
 class App extends Component {
   constructor(){
     super();
-    // UniqueId.enableUniqueIds(this);
     this.state = {
       addressBook: [
         {
-          // id: this.nextUniqueId(),
+          id: generate(16),
           FirstName: "Cathy" ,
           LastName: "Pierce",
           Birthday: "9/14/1996",
           Telephone: "200-910-8132",
         },
         {
-          // id: this.nextUniqueId(),
+          id: generate(16),
           FirstName: "Alfonso",
           LastName: "Cooley",
           Birthday: "8/10/1973",
           Telephone: "200-657-9362"
         },
         {
-          // id: this.nextUniqueId(),
+          id: generate(16),
           FirstName: "Victor",
           LastName: "Gordon",
           Birthday: "8/3/1970",
           Telephone: "200-661-9407"
         },
         {
-          // id: this.nextUniqueId(),
+          id: generate(16),
           FirstName: "Colleen",
           LastName: "Wright",
           Birthday: "10/28/1967",
           Telephone: "200-250-7949"
         },
         {
-          // id: this.nextUniqueId(),
+          id: generate(16),
           FirstName: "James",
           LastName: "Johnston",
           Birthday: "5/11/1972",
           Telephone: "200-645-3176"
         },
         {
-          // id: this.nextUniqueId(),
+          id: generate(16),
           FirstName: "Anna",
           LastName: "Reyes",
           Birthday: "9/10/1975",
@@ -67,6 +67,7 @@ class App extends Component {
   addAddress = (event) => {
     event.preventDefault();
     let newPerson = {
+      id:generate(16),
       FirstName: this.state.fName,
       LastName: this.state.lName,
       Birthday: this.state.dob,
@@ -80,11 +81,11 @@ class App extends Component {
     this.setState({contact: ''});
   }
 
-  deleteAddressHandler = (index, event) =>{
-    const addressbook = [...this.state.addressBook];
-    // let index = book.findIndex((person)=>person.id === key);
-    addressbook.splice(index, 1);
-    this.setState({addressBook:addressbook});
+  deleteAddressHandler = (id) =>{
+    const book = [...this.state.addressBook];
+    let index = book.findIndex((person)=>person.id === id);
+    book.splice(index, 1);
+    this.setState({addressBook:book});
   }
 
   render() {
