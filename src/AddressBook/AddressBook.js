@@ -7,7 +7,7 @@ const viewBook = (props)  => {
             <div>{person.FirstName}, {person.LastName}</div>
             <div>{person.Birthday}</div>
             <div>{person.Telephone}</div>
-            <button onClick={(e) => {if(window.confirm("Are you sure you want to delete this contact?")) props.deletePerson(person.id)}}>Delete Contact</button>
+            <button onClick={(e) => {if(window.confirm("Are you sure you want to delete " + person.FirstName + " " + person.LastName)) props.deletePerson(person.id)}}>Delete Contact</button>
         </div>);
     })
     return book;
