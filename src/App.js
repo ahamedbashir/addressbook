@@ -60,7 +60,7 @@ class App extends Component {
       lName:'',
       dob: '',
       contact: '',
-      add: false,
+      add: true,
       view: false
     }
   }
