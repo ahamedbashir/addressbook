@@ -108,7 +108,7 @@ class App extends Component {
         <div className='Body'>
         
         <button type="primary" onClick={()=>this.setState({add: true})}>Create New Contact</button>
-        {this.state.add &&
+        {this.state.add?
         <Form className="text-left" onSubmit={this.addAddress}>
             <Form.Group controlId="formAddress">
 
@@ -151,9 +151,9 @@ class App extends Component {
             </div>
             </Form.Group>
             <Button variant="primary" type="submit">Add Contact</Button>
-          </Form>
+            
+          </Form> : null
         }
-        
         <div className="view">
           <div className = "search">
               <Form.Control
