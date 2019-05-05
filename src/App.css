@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-color: gray;
+  background-color: rgb(27, 27, 27);
 }
 
 .App-logo {
@@ -23,22 +23,13 @@
   color: white;
 }
 
-.App-link {
-  color: #39b7e9;
-  font-style: italic;
-  font-size: 18px;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
-.Body {
+/* .Body {
+  display: grid;
+  justify-content: center;
+} */
+.AddNew {
   display: grid;
   justify-content: center;
 }
@@ -48,6 +39,13 @@
   justify-content: center;
   border: 10px solid white;
   margin: 10px;
+  background-color: rgb(93, 142, 182);
+
+
+}
+.newcontact{
+  background-color: rgb(93, 142, 182);
+  width: 300px;
 }
 
 .person {
@@ -60,12 +58,19 @@
 .inputBlock {
   margin: 10px 10px 10px 0px;
   text-align: center;
-  border: 5px solid black;
+  border: 5px solid rgb(11, 69, 230);
 }
 
 Form {
   margin: 10px;
   border: 10px solid white;
-  width: 350px;
-  height: 250px;
+}
+
+button {
+  background-color: rgb(61, 26, 35);
+  color: white;
+}
+
+.search {
+  /* border: 5px solid green; */
 }

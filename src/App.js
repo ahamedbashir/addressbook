@@ -61,7 +61,8 @@ class App extends Component {
       dob: '',
       contact: '',
       add: true,
-      view: false
+      view: false,
+      search: ""
     }
   }
   addAddress = (event) => {
@@ -87,29 +88,15 @@ class App extends Component {
     book.splice(index, 1);
     this.setState({addressBook:book});
   }
+  searchHandler =(address, data) => {
+    let result = address.filter(adr => adr.FirstName.includes(data) || adr.LastName.includes(data)  || adr.Birthday.includes(data) || adr.Telephone.includes(data));
+    return result;
+  }
+
 
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <div>
-            <img src={logo} className="App-logo" alt="logo" />
-          </div>
-          <div>
-            <h2>
-              Your address book...
-            </h2>
-            <p>
-              Search or Modify Address Book
-            </p>
-            
-          </div>
-        </header>
-        <div className='Body'>
-        
-        <button type="primary" onClick={()=>this.setState({add: true})}>Create New Contact</button>
-        {this.state.add?
-        <Form className="text-left" onSubmit={this.addAddress}>
+    const newContact = (
+      <Form className="text-left newcontact" onSubmit={this.addAddress}>
             <Form.Group controlId="formAddress">
 
             <div className="inputBlock">
@@ -142,31 +129,59 @@ class App extends Component {
             </div>
 
             <div className="inputBlock">
-              <Form.Label>Telephone</Form.Label>
+              <Form.Label>Telephone </Form.Label>
               <ReactPhoneInput
                 defaultCountry={'us'}
                 required="true"
                 value={this.state.contact}
                 onChange={(value) => this.setState({contact: value})}/>
+                {/* <Form.Control
+                  type="phone"
+                  required
+                  placeholder="Enter Telephone number"
+                  value={this.state.contact}
+                  onChange={(value) => this.setState({contact: value})}/> */}
             </div>
             </Form.Group>
             <Button variant="primary" type="submit">Add Contact</Button>
             
-          </Form> : null
-        }
-        <div className="view">
-          <div className = "search">
-              <Form.Control
-              type = "text"
-              placeholder = "Enter Name to search"/>
+          </Form> )
+
+
+    return (
+      <div className="App">
+        <header className="App-header">
+          <div>
+            <img src={logo} className="App-logo" alt="logo" />
           </div>
-          <button type="primary" onClick={()=>this.setState({view: ! this.state.view})}>View Address Book</button>
-          {this.state.view &&
-          <ViewBook 
-            book = {this.state.addressBook}
-            deletePerson = {this.deleteAddressHandler}/>
-          }
-        </div>
+          <div>
+            <h2>
+              Your address book...
+            </h2>
+            <div className = "search">
+                <Form.Control
+                type = "text"
+                placeholder = "Search Your Address Book"
+                value={this.state.search}
+                onChange={(event) => {this.setState({search: event.target.value, view: true, add: false})}}/>
+            </div>
+            
+          </div>
+        </header>
+        <div className='Body'>
+          <div className="AddNew">
+            <button type="primary" onClick={()=>this.setState({add: !this.state.add})}>{this.state.add? "No more new contact": "Create New Contact"}</button>
+            {this.state.add ? newContact : null}
+          </div>
+         
+          <div className="view">
+            <button type="primary" onClick={()=>this.setState({view: ! this.state.view})}>{this.state.view? "Hide address Book" : "View Address Book"}</button>
+            {this.state.view &&
+            <ViewBook 
+              book = {this.searchHandler(this.state.addressBook, this.state.search)}
+              deletePerson = {this.deleteAddressHandler}/>
+            }
+          </div>
         </div>
       </div>
     );
