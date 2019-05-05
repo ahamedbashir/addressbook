@@ -72,5 +72,6 @@ button {
 }
 
 .search {
-  /* border: 5px solid green; */
+  border: 5px solid green;
+  background-color: white;
 }
