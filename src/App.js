@@ -89,8 +89,8 @@ class App extends Component {
     this.setState({addressBook:book});
   }
   searchHandler =(address, input) => {
-    let data = input.toUpper()
-    let result = address.filter(adr => adr.FirstName.toUpper().includes(data) || adr.LastName.toUpper().includes(data)  || adr.Birthday.includes(data) || adr.Telephone.includes(data));
+    let data = input.toUpperCase()
+    let result = address.filter(adr => adr.FirstName.toUpperCase().includes(data) || adr.LastName.toUpperCase().includes(data)  || adr.Birthday.includes(data) || adr.Telephone.includes(data));
     return result;
   }
 
