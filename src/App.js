@@ -88,8 +88,9 @@ class App extends Component {
     book.splice(index, 1);
     this.setState({addressBook:book});
   }
-  searchHandler =(address, data) => {
-    let result = address.filter(adr => adr.FirstName.includes(data) || adr.LastName.includes(data)  || adr.Birthday.includes(data) || adr.Telephone.includes(data));
+  searchHandler =(address, input) => {
+    let data = input.toUpper()
+    let result = address.filter(adr => adr.FirstName.toUpper().includes(data) || adr.LastName.toUpper().includes(data)  || adr.Birthday.includes(data) || adr.Telephone.includes(data));
     return result;
   }
 
