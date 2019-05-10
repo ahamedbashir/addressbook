@@ -158,13 +158,21 @@ class App extends Component {
             <h2>
               Your address book...
             </h2>
-            <div className = "search">
+            {/* <div className = "search">
                 <Form.Control
                 type = "text"
                 placeholder = "Search Your Address Book"
                 value={this.state.search}
                 onChange={(event) => {this.setState({search: event.target.value, view: true, add: false})}}/>
-            </div>
+            </div> */}
+            <nav class="navbar navbar-light bg-light">
+            <form class="form-inline" onSubmit={(event)=>{ event.preventDefault();}}>
+              <input class="form-control mr-sm-2" type="search" placeholder="Search Contacts" aria-label="Search" value={this.state.search}
+                onChange={(event) => {this.setState({search: event.target.value, view: true, add: false})}}
+              />
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </nav>
             
           </div>
         </header>
